@@ -114,37 +114,43 @@
 </details>
 
 
-# 4. Tips
+# 一.获取Telegram的Bot_Token和Chat_ID
 
-- **前端开源**：参见[MarSeventh/Sanyue-ImgHub](https://github.com/MarSeventh/Sanyue-ImgHub)项目。
+1、在Telegram中，向@BotFather发送命令/newbot，根据提示依次输入您的机器人名称和用户名。成功创建机器人后，您将会收到一个TG_BOT_TOKEN，用于与Telegram API进行交互。
 
-- **生态建设**：欢迎社区参与生态建设，欢迎提交 PR 或者 Issue，优质内容参见[官网生态建设页面](https://cfbed.sanyue.de/about/ecosystem.html)。
+2、创建一个新的频道（Channel），进入该频道后，选择频道设置。将刚刚创建的机器人添加为频道管理员，这样机器人才能发送消息。
 
-- **赞助**：项目维护不易，喜欢本项目的话，可以作者大大一点小小的鼓励哦，您的每一份支持都是我前进的动力\~ 
+3、获取Chat_ID
 
-  <a href="https://afdian.com/a/marseventh"><img width="200" src="https://pic1.afdiancdn.com/static/img/welcome/button-sponsorme.png" alt=""></a>
-  
-- **Sponsors**：感谢以下赞助者对本项目的支持！
+通过@VersaToolsBot获取您的频道ID。向该机器人发送消息，按照指示操作，最后您将得到TG_CHAT_ID（即频道的ID）。
 
-  [![赞助者](https://afdian-sponsors.sanyue.de/image)](https://afdian.com/a/marseventh)
-  
-- **Contributors**：感谢以下贡献者对本项目的无私贡献！
+或者通过@GetTheirIDBot获取您的频道ID。向该机器人发送消息，按照指示操作，最后您将得到TG_CHAT_ID（即频道的ID）。
 
-  [![Contributors](https://contrib.rocks/image?repo=Marseventh/Cloudflare-ImgBed)](https://github.com/MarSeventh/CloudFlare-ImgBed/graphs/contributors)
+二、登录cloudflare创建pages
+成功创建 fork 后来到 cloudflare 登录你的账号并打开仪表盘 点击侧边栏中的 Workers 和 Pages
+然后选到 “Pages” 一栏，点击 “连接到 Git”
+授权git之后选择该项目，什么都不用配置，直接点击部署
+三、配置环境变量以及自定义域名
+点击KV（在 Workers 和 Pages 菜单下），配置一个KV数据库，名称随意
+点击R2 对象存储，配置一个R2存储桶，名称随意
+绑定KV和R2 对象存储
+依次点击Workers 和 Pages->概述->设置->绑定
+依次点击添加->KV命名空间，选择自己创建的KV，名称设置为img_url
+依次点击添加->R2存储桶，选择自己创建的R2 对象存储，名称设置为img_r2
+依次点击Workers 和 Pages->概述->自定义域，输入自己托管在cloudflare的域名(如果没有可忽略这个步骤)
+依次点击Workers 和 Pages->概述->设置->变量与机密
+添加以下变量，其中TG_BOT_TOKEN和TG_CHAT_ID是必须添加的
 
-# 5. Star History
+构建命令：npm install
 
-**如果觉得项目不错希望您能给个免费的star✨✨✨，非常感谢！**
+相关变量设置
 
-[![Star History Chart](https://api.star-history.com/svg?repos=MarSeventh/CloudFlare-ImgBed,MarSeventh/Sanyue-ImgHub&type=Date)](https://star-history.com/#MarSeventh/CloudFlare-ImgBed&MarSeventh/Sanyue-ImgHub&Date)
+AUTH_CODE = 前台的认证码
 
-# 6. Special Sponsors
+BASIC_USER = 用户名
 
-- **[CloudFlare](https://www.cloudflare.com) & [EdgeOne](https://edgeone.ai/?from=github)**：提供CDN加速和安全保护服务
+BASIC_PASS = 密码
 
-  <a href="https://www.cloudflare.com"><img src="static/readme/cloudflare-logo.png" alt="Cloudflare Logo" height="25"></a> <a href="https://edgeone.ai/?from=github"><img src="https://edgeone.ai/media/34fe3a45-492d-4ea4-ae5d-ea1087ca7b4b.png" alt="Tencent Logo" height="25"></a>
+TG_CHAT_ID = 频道id
 
-- **[亚洲云](https://www.asiayun.com) & [DartNode](https://dartnode.com)**：提供云计算服务资源支持
-
-  [![Powered by DartNode](https://dartnode.com/branding/DN-Open-Source-sm.png)](https://dartnode.com "Powered by DartNode - Free VPS for Open Source")
-
+TG_BOT_TOKEN = 1544711526:AAHiQI  #机器人API
