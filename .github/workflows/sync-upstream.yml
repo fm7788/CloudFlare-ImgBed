@@ -4,10 +4,10 @@ permissions:
   contents: write
   actions: write
 
-on:
-  schedule:
-    - cron: "0 0 * * *" # every day
-  workflow_dispatch:
+#on:
+#  schedule:
+#    - cron: "0 0 * * *" # every day
+#  workflow_dispatch:
 
 jobs:
   sync_latest_from_upstream:
